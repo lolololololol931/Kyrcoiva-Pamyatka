@@ -20,8 +20,9 @@ int main()
     cout << "Виберіть розмір поля "<<m<<b<< "4x4"<<mn<<o<<" - 1 або "<<m<<y<< "5x6"<<mn<<o<<" - 2:\n";
     short choice;
     cin >> choice;
-    if (choice != 1 && choice != 2) {
-        cerr << "Виберіть "<<r<<"1"<<o<<" або "<<r<<"2"<<o<<" для початку гри!\n";
+    while (choice != 1 && choice != 2) {  
+        cerr << "Виберіть " << r << "1" << o << " або " << r << "2" << o << " для початку гри!\n";
+        cin >> choice;
     }
     switch (choice) {
     case 1:
