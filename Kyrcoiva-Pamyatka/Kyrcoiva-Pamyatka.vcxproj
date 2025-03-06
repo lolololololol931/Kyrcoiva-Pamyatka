@@ -128,6 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Kyrcoiva-Pamyatka.cpp" />
+    <ClCompile Include="mainGamefvxs.cpp" />
+    <ClCompile Include="mainGamefxf.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h" />
+    <ClInclude Include="mainGamefvxs.h" />
+    <ClInclude Include="mainGamefхf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
