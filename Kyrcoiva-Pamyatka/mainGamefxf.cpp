@@ -82,14 +82,7 @@ int Gamefxf()
         cout << "\033[2J\033[1;1H";
         cout << "Розгадайте пари!\n";
 
-        cout <<m<<c "  1 2 3 4"<<o<<mn << endl;
-        for (int i = 0; i < 4; i++) {
-            cout <<m<<c<< char('A' + i)<<o<<mn << " ";
-            for (int j = 0; j < 4; j++) {
-                cout << r << "X " << o;
-            }
-            cout << endl;
-        }
+        
         auto startPlayer = chrono::steady_clock::now();
         auto endPlayer = chrono::steady_clock::now();
         chrono::duration<double> elapsedPlayer = endPlayer - startPlayer;
@@ -103,6 +96,14 @@ int Gamefxf()
         string pos1, pos2;
         vector<string> answers;
         while (true) {
+            cout << m << c "  1 2 3 4" << o << mn << endl;
+            for (int i = 0; i < 4; i++) {
+                cout << m << c << char('A' + i) << o << mn << " ";
+                for (int j = 0; j < 4; j++) {
+                    cout << r << "X " << o;
+                }
+                cout << endl;
+            }
             cout << "Введіть дві позиції для відкриття (наприклад: A1 B2): ";
             cin >> pos1 >> pos2;
 
@@ -166,9 +167,28 @@ int Gamefxf()
                 chrono::duration<double> elapsedPlayer = endPlayer - startPlayer;
                 double timePlayer = elapsedPlayer.count();
                 saveStats(timePlayer, attempts, everyattempt, scamattempt);
+                cout << "\033[2J\033[1;1H"; //очищення екрану
                 cout <<g<<"Ви перемогли! Вітання!"<<o;
+                cout << g << "\nВаша статистика збережена у файлі. Перегляньте результати та спробуйте ще раз!" << o;
                 Sleep(1000);
-                break;                
+                int choice;
+                cout << g << "\nХочете продовжити гру? 1 - так, 2 - ні:  " << o;
+                cin >> choice;
+                if (choice == 1) {
+                    cout << "\033[2J\033[1;1H"; // очищення екрану
+                    Gamefxf();
+                }
+                else if (choice == 2) {
+                    cout << g "Дякуємо а гру" << o;
+                    Sleep(1000);
+                    break;                   
+                }                
+                else {
+                    cout << r << "Введіть коректне значення" << o;
+                    Sleep(1000);
+                    break;
+                }
+                            
             }
             if (attempts == 5) {
                 auto endPlayer = chrono::steady_clock::now();
@@ -176,8 +196,29 @@ int Gamefxf()
                 double timePlayer = elapsedPlayer.count();
                 saveStats(timePlayer, attempts, everyattempt, scamattempt);
                 cout <<r<< "Ви використали всі 5 спроб та"<<m<< " ПРОГРАЛИ" << mn << o;
-                Sleep(1000);
-                break;
+                cout<<r<<"\nВаша статистика збережена у файлі.Перегляньте результати та спробуйте ще раз!" << o;
+                int choice;
+                cout << r << "\nХочете продовжити гру? 1 - продовження старої, 2 - нова, 3 - ні:  " << o;
+                cin >> choice;
+                if (choice == 1) {
+                    cout << "\033[2J\033[1;1H"; // очищення екрану
+                    attempts = 0;
+                    continue;  
+                }
+                else if (choice == 2) {
+                    cout << "\033[2J\033[1;1H"; // очищення екрану
+                    Gamefxf();
+                }
+                else if(choice==3){
+                    cout <<g "Дякуємо а гру"<<o;
+                    Sleep(1000);
+                    break;
+                }
+                else {
+                    cout <<r<< "Введіть коректне значення"<<o;
+                    Sleep(1000);
+                    break;
+                }
             }
             auto endPlayer = chrono::steady_clock::now();
             chrono::duration<double> elapsedPlayer = endPlayer - startPlayer;
